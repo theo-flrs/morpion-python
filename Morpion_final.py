@@ -18,6 +18,19 @@ jeu_en_cours= True # On initialise la variable pour jeu_en_cours
 ##################################
 
 
+
+################### ⚙️  CHOIX MODE DE JEU ⚙️  ##############################
+def mode_de_jeu(MDJ):
+    if MDJ == "1":
+        print("Lancement du mode Humain VS Humain")
+    elif MDJ == "2":
+        print("Lancement du mode Humain VS IA")
+    elif MDJ == "3":
+        print("Rage Quit") #rajoutez fonction ou l'on quitte le programme
+###################################################################
+
+
+
 ################### 🎮 JOUER 🎮  ##############################
 def jouer(): # Ajout de la fonction jouer
     afficher_grille() # Fonction afficher la grille
