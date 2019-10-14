@@ -25,24 +25,25 @@ def mode_de_jeu(MDJ):
         print("Lancement du mode Humain VS Humain")
     elif MDJ == "2":
         print("Lancement du mode Humain VS IA")
-    elif MDJ == "3":
+    elif MDJ == "4":
         print("Rage Quit") #rajoutez fonction ou l'on quitte le programme
-###################################################################
+#############################################################################
 
 
 
 ################### 🎮 JOUER 🎮  ##############################
 def jouer(): # Ajout de la fonction jouer
-    afficher_grille() # Fonction afficher la grille
-    while jeu_en_cours: # Tant que le jeu est en cours
-        changement_de_tour(joueur_actuel) # fonction pour passer au tour suivant
-        game_over() # fonction de check si game over ou non
-        changement_de_joueur() #fonction changer de joueur lorsque changement de tour
+    if MDJ == "1":
+        afficher_grille() # Fonction afficher la grille
+        while jeu_en_cours: # Tant que le jeu est en cours
+            changement_de_tour(joueur_actuel) # fonction pour passer au tour suivant
+            game_over() # fonction de check si game over ou non
+            changement_de_joueur() #fonction changer de joueur lorsque changement de tour
 
-    if gagnant == "O" or gagnant == "X": # Trouver le gagant
-        print("Le joueur" , gagnant , "à gagné")
-    elif gagnant == None: #Si aucun des deux n'a gagné
-        print("Dommage vous êtes tout les deux mauvais.")
+        if gagnant == "O" or gagnant == "X": # Trouver le gagant
+            print("Le joueur" , gagnant , "à gagné")
+        elif gagnant == None: #Si aucun des deux n'a gagné
+            print("Dommage vous êtes tout les deux mauvais.")
 ###################################################################
 
 
@@ -187,5 +188,7 @@ def changement_de_joueur():
 ##################################
  #⭐️ Lancement de la partie ⭐️#
 ##################################
+print(" [1] Humain vs Humain \n [2] Humain vs IA \n [3] IA vs IA \n [4] Quitter la partie")
+MDJ = input("Quel mode de jeu voulez vous choisir ? ")
 
 jouer() #Commencement de la partie
