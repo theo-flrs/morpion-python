@@ -3,6 +3,7 @@
 ##################################
 
 import random
+import sys
 
 grille=[".", ".", ".", #initialisation de la grille
        ".", ".", ".",
@@ -31,6 +32,8 @@ def mode_de_jeu(MDJ):
         print("Lancement du mode IA, VS IA")
     elif MDJ == "4":
         print("Rage Quit") #rajoutez fonction ou l'on quitte le programme
+        quit()
+        
 #############################################################################
 
 
@@ -240,7 +243,9 @@ def changement_de_joueur():
  #⭐️ Lancement de la partie ⭐️#
 ##################################
 print(" [1] Humain vs Humain \n [2] Humain vs IA \n [3] IA vs IA \n [4] Quitter la partie")
-MDJ = input("Quel mode de jeu voulez vous choisir ? ")
+MDJ = input("Quel mode de jeu voulez vous choisir ? \n ")
+
+mode_de_jeu(MDJ)
 
 if MDJ == "2":
     joueur_actuel=input("Qui commence ? \n [1] Moi \n [2] L'IA \n --> ")
