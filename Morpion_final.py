@@ -242,12 +242,12 @@ def changement_de_joueur():
 ##################################
  #⭐️ Lancement de la partie ⭐️#
 ##################################
-print(" [1] Humain vs Humain \n [2] Humain vs IA \n [3] IA vs IA \n [4] Quitter la partie")
-MDJ = input("Quel mode de jeu voulez vous choisir ? \n ")
+print(" [1] Humain vs Humain \n [2] Humain vs IA \n [3] IA vs IA \n [4] Quitter la partie") #Choix du mode de jeu
+MDJ = input("Quel mode de jeu voulez vous choisir ? \n ") 
 
-mode_de_jeu(MDJ)
+mode_de_jeu(MDJ) #appel de la fonction mode de jeu
 
-if MDJ == "2":
+if MDJ == "2": 
     joueur_actuel=input("Qui commence ? \n [1] Moi \n [2] L'IA \n --> ")
     if joueur_actuel == "1":
         joueur_actuel = "X"
