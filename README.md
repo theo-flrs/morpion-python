@@ -6,6 +6,8 @@ __Réalisé par :__
 - __[Benjamin Vimeux](https://github.com/Vimeux)__ 
 - __[Yohann Barbedor](https://github.com/barbedor)__ 
 
+---
+
 ## Code Final : 
 
 ``` python
