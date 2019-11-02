@@ -2,8 +2,8 @@
 #⭐️ DECLARATION DES VARIABLES ⭐️#
 ##################################
 
-import random
-import sys
+import random #Importation de la bibliothèque python : random
+import sys #Importation de la bibliothèque python : sys
 
 grille=[".", ".", ".", #initialisation de la grille
        ".", ".", ".",
@@ -21,9 +21,9 @@ jeu_en_cours= True # On initialise la variable pour jeu_en_cours
 ##################################
 
 
-
 ################### ⚙️  CHOIX MODE DE JEU ⚙️  ##############################
-def mode_de_jeu(MDJ):
+def mode_de_jeu(MDJ): # Ajout de la fonction mode de jeu
+
     if MDJ == "1":
         print("Lancement du mode Humain VS Humain")
     elif MDJ == "2":
@@ -32,7 +32,7 @@ def mode_de_jeu(MDJ):
         print("Lancement du mode IA, VS IA")
     elif MDJ == "4":
         print("Rage Quit") #rajoutez fonction ou l'on quitte le programme
-        quit()
+        quit() #fonction qui quitte le programme
 
 #############################################################################
 
@@ -87,7 +87,7 @@ def verifier_ligne(): # Ajout fonction vérification de la ligne
         return None # Sinon rien retourner
 
 
-def verifier_colonne():
+def verifier_colonne():# Ajout fonction vérification de la colonne
     global jeu_en_cours # Variable global gagnant pour changer toute les occurences partout de la var jeu_en_cours
 
     colonne1 = grille[6] == grille[3] == grille[0] != "."
@@ -108,7 +108,7 @@ def verifier_colonne():
 
 
 
-def verifier_diagonale():
+def verifier_diagonale(): # Ajout fonction vérification des diagonales
     global jeu_en_cours # Variable global gagnant pour changer toute les occurences partout de la var jeu_en_cours
 
     diagonale1 = grille[6] == grille[4] == grille[2] != "." # Si l'une des diagonales à 3 fois la même valeur différent de "."
@@ -165,15 +165,15 @@ def changement_de_tour(joueur): # Ajout de la fonction changement de tour par ra
         print("C'est au tour de" , joueur) # A chaque changement de tour , afficher c'est à lui de jouer
         placer_un_pion = input("Choisissez un chiffre sur le numpad: ") # Input pour placer un pion sur la grille (numpad)
 
-        vazy = False # On initialise la variable pour détécter si il y a une erreur de frappe ou un pion déjà présent , de base elle est négative
-        while not vazy:
+        condition_ok = False # On initialise la variable pour détécter si il y a une erreur de frappe ou un pion déjà présent , de base elle est négative
+        while not condition_ok:
             while placer_un_pion not in ["1","2","3","4","5","6","7","8","9"]: # Tant qu'il ne place pas un pion de cette liste de valeurs
                 placer_un_pion = input("Choisissez un chiffre sur le numpad: ") # Lui redemander de rentrer un chiffre
 
             placer_un_pion = int(placer_un_pion)-1 # On place un pion à la position chiffre-1 car le tableau commence à 0 et non à 1
 
             if grille[placer_un_pion] == ".": #Si sur la grille il y a un emplacement avec un "."
-                vazy = True # Alors c'est ok on peut placer un pion
+                condition_ok = True # Alors c'est ok on peut placer un pion
             else:
                 print("Tu essayes de tricher ? Non non non ;) ") # Sinon recommencer avec un autre emplacement de pion
 
@@ -181,12 +181,12 @@ def changement_de_tour(joueur): # Ajout de la fonction changement de tour par ra
         afficher_grille() #Afficher la grille
 
 
-    if MDJ == "2":
+    if MDJ == "2": # JOUEUR CONTRE IA
         print("C'est au tour de" , joueur) # A chaque changement de tour , afficher c'est à lui de jouer
 
-        vazy = False # On initialise la variable pour détécter si il y a une erreur de frappe ou un pion déjà présent , de base elle est négative
-        while not vazy:
-            if joueur == "X":
+        condition_ok = False # On initialise la variable pour détécter si il y a une erreur de frappe ou un pion déjà présent , de base elle est négative
+        while not condition_ok:
+            if joueur == "X": #Si le joueur humain est détecté
                 placer_un_pion = input("Choisissez un chiffre sur le numpad: ") # Input pour placer un pion sur la grille (numpad)
                 while placer_un_pion not in ["1","2","3","4","5","6","7","8","9"]: # Tant qu'il ne place pas un pion de cette liste de valeurs
                     placer_un_pion = input("Choisissez un chiffre sur le numpad: ") # Lui redemander de rentrer un chiffre
@@ -194,33 +194,34 @@ def changement_de_tour(joueur): # Ajout de la fonction changement de tour par ra
                 placer_un_pion = int(placer_un_pion)-1 # On place un pion à la position chiffre-1 car le tableau commence à 0 et non à 1
 
                 if grille[placer_un_pion] == ".": #Si sur la grille il y a un emplacement avec un "."
-                    vazy = True # Alors c'est ok on peut placer un pion
+                    condition_ok = True # Alors c'est ok on peut placer un pion
                 else:
                     print("Tu essayes de tricher ? Non non non ;) ") # Sinon recommencer avec un autre emplacement de pion
 
-            elif joueur == "O":
-                    placer_un_pion = random.randint(0,8)
+            elif joueur == "O": # Si c'est le joueur IA
+                    placer_un_pion = random.randint(0,8) # Placer un pion sur un endroit aléatoire
                     if grille[placer_un_pion] == ".": #Si sur la grille il y a un emplacement avec un "."
-                        vazy = True # Alors c'est ok on peut placer un pion
+                        condition_ok = True # Alors c'est ok on peut placer un pion
 
         grille[placer_un_pion] = joueur #Pour placer le pion X ou O en fonction du joueur
         afficher_grille() #Afficher la grille
 
-    if MDJ == "3":
+
+    if MDJ == "3": # IA CONTRE IA
         print("C'est au tour de" , joueur) # A chaque changement de tour , afficher c'est à lui de jouer
 
-        vazy = False # On initialise la variable pour détécter si il y a une erreur de frappe ou un pion déjà présent , de base elle est négative
-        while not vazy:
+        condition_ok = False # On initialise la variable pour détécter si il y a une erreur de frappe ou un pion déjà présent , de base elle est négative
+        while not condition_ok:
 
-            if joueur == "X":
-                    placer_un_pion = random.randint(0,8)
+            if joueur == "X": # Si c'est le joueur IA numéro 1
+                    placer_un_pion = random.randint(0,8) # Placer un pion sur un endroit aléatoire
                     if grille[placer_un_pion] == ".": #Si sur la grille il y a un emplacement avec un "."
-                        vazy = True # Alors c'est ok on peut placer un pion
+                        condition_ok = True # Alors c'est ok on peut placer un pion
 
-            elif joueur == "O":
-                    placer_un_pion = random.randint(0,8)
+            elif joueur == "O": # Si c'est le joueur IA numéro 2
+                    placer_un_pion = random.randint(0,8) # Placer un pion sur un endroit aléatoire
                     if grille[placer_un_pion] == ".": #Si sur la grille il y a un emplacement avec un "."
-                        vazy = True # Alors c'est ok on peut placer un pion
+                        condition_ok = True # Alors c'est ok on peut placer un pion
 
         grille[placer_un_pion] = joueur #Pour placer le pion X ou O en fonction du joueur
         afficher_grille() #Afficher la grille
@@ -245,13 +246,16 @@ def changement_de_joueur():
 print(" [1] Humain vs Humain \n [2] Humain vs IA \n [3] IA vs IA \n [4] Quitter la partie") #Choix du mode de jeu
 MDJ = input("Quel mode de jeu voulez vous choisir ? \n ")
 
+while MDJ not in ["1","2","3","4"]: # Tant qu'il ne place pas un pion de cette liste de valeurs
+    MDJ = input("Quel mode de jeu voulez vous choisir ? \n ") # Lui redemander de rentrer un chiffre
+
 mode_de_jeu(MDJ) #appel de la fonction mode de jeu
 
 if MDJ == "2":
-    joueur_actuel=input("Qui commence ? \n [1] Moi \n [2] L'IA \n --> ")
-    if joueur_actuel == "1":
-        joueur_actuel = "X"
-    elif joueur_actuel == "2":
-        joueur_actuel = "O"
+    joueur_actuel=input("Qui commence ? \n [1] Moi \n [2] L'IA \n --> ") # On demande a l'utilisateur qui veut commencer
+    if joueur_actuel == "1":#
+        joueur_actuel = "X"#
+    elif joueur_actuel == "2":# En fonction de la réponse de l'utilisateur , cela sera l'IA ou lui même qui commencera
+        joueur_actuel = "O"#
 
 jouer() #Commencement de la partie
